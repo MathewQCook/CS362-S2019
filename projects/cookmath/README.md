@@ -1,1 +1,1 @@
-Mathew Cook, cookmath
+This is my assignment 1 submission
