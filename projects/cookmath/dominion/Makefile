@@ -21,6 +21,26 @@ testBuyCard: testDrawCard.c dominion.o rngs.o
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
+unittestresults:
+	gcc -o unittest1 -g  unittest1.c dominion.c rngs.o -coverage -fpic -lm
+	gcc -o unittest2 -g  unittest2.c dominion.c rngs.o -coverage -fpic -lm
+	gcc -o unittest3 -g  unittest3.c dominion.c rngs.o -coverage -fpic -lm
+	gcc -o unittest4 -g  unittest4.c dominion.c rngs.o -coverage -fpic -lm
+	gcc -o cardtest1 -g  cardtest1.c dominion.c rngs.o -coverage -fpic -lm
+	gcc -o cardtest2 -g  cardtest2.c dominion.c rngs.o -coverage -fpic -lm
+	gcc -o cardtest3 -g  cardtest3.c dominion.c rngs.o -coverage -fpic -lm
+	gcc -o cardtest4 -g  cardtest4.c dominion.c rngs.o -coverage -fpic -lm
+	./unittest1 &> unittestresult.out
+	./unittest2 >> unittestresult.out
+	./unittest3 >> unittestresult.out
+	./unittest4 >> unittestresult.out
+	./cardtest1 >> unittestresult.out
+	./cardtest2 >> unittestresult.out
+	./cardtest3 >> unittestresult.out
+	./cardtest4 >> unittestresult.out
+	gcov dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
@@ -36,4 +56,4 @@ player: player.c interface.o
 all: playdom player
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
