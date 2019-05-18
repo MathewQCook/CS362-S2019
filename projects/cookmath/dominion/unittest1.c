@@ -44,7 +44,7 @@ int main() {
 	//Modify hand count for player 2 to ensure function of state change
 	GameSt.handCount[1] = p2 + 2; //Should now equal 7 cards
 	assert(GameSt.handCount[1] == 7);
-	printf("Modificaiton of player 2's hand count passed.\n");
+	printf("Modification of player 2's hand count passed.\n");
 
 	printf("Handcount testing completed.\n");
 	

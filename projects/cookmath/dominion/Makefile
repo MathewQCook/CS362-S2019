@@ -41,6 +41,16 @@ unittestresults:
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+randomtestresults:
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.c rngs.o -coverage -fpic -lm
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.c rngs.o -coverage -fpic -lm	
+	gcc -o randomtestcardadventurer -g  randomtestcardadventurer.c dominion.c rngs.o -coverage -fpic -lm
+	./randomtestcard1 >> randomtestresults.out
+	./randomtestcard2 >> randomtestresults.out
+	./randomtestcardadventurer >> randomtestresults.out
+	gcov dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
+
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
